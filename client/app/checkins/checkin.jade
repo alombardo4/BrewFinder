@@ -1,0 +1,36 @@
+h2.text-center Checkin Details
+div(layout='row' layout-align='center start')
+  md-card(flex-gt-sm='50')
+    md-card-content(layout='column')
+      md-list
+        md-list-item
+          md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-800"}')
+            i.material-icons local_drink
+          div.md-list-item-text
+            h4
+              a(ng-href='/beers/{{checkin.beer._id}}') {{checkin.beer.name}}
+            p
+              a(ng-href='/breweries/{{checkin.beer.breweries[0]._id}}') {{checkin.beer.breweries[0].name}}
+        md-list-item
+          md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-200"}')
+            i.material-icons store
+          div.md-list-item-text
+            a(href='/stores/{{checkin.store._id}}')
+              h4 {{checkin.store.name}}
+              p {{checkin.store.address}}
+        md-list-item
+          md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-400"}')
+            i.material-icons functions
+          div.md-list-item-text
+            h4 {{checkin.quantity}} x {{checkin.packageType}}
+        md-list-item
+          md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-600"}')
+            i.material-icons date_range
+          div.md-list-item-text
+            h4 {{checkin.time | date: 'short'}}
+        md-list-item
+          md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-50"}')
+            i.material-icons face
+          div.md-list-item-text()
+            h4 
+              a(ng-href='/users/{{checkin.user._id}}') {{checkin.user.alias || checkin.user.name}}

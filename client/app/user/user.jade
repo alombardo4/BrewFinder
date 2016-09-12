@@ -1,0 +1,58 @@
+div(ng-hide='status === "error"' layout='column' layout-gt-xs='row')
+  div.details-page(layout='column' layout-align='center center' flex-gt-xs='30')
+    div.user-circle(md-colors='::{backgroundColor: "default-accent-50"}')
+      p {{user.totalCheckins}}
+    p.text-center
+      strong Total Checkins
+    h3 {{user.alias || user.name}}
+    p {{user.bio}}
+    div(ng-if='state==="me"' layout='row' layout-align='center center')
+      md-button.md-raised(ng-href='/settings') Settings
+
+  md-card(flex-gt-xs='70')
+    md-card-content(layout='column' layout-align='stretch start' md-dynamic-height)
+      md-tabs(md-stretch-tabs='always' md-dynamic-height md-border-bottom)
+        md-tab(label='checkins')
+          md-content.md-padding
+            md-list
+              md-list-item.md-2-line(ng-repeat='checkin in user.checkins | limitTo: 10' ng-href='/checkins/{{checkin._id}}')
+                md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-600"}')
+                  i.material-icons local_drink
+                div.md-list-item-text(layout='column')
+                  h3 {{checkin.beer.breweries[0].nameShortDisplay || checkin.beer.breweries[0].name}} {{checkin.beer.name}}
+                  p {{checkin.store.name}}
+                md-divider(ng-if='!$last')
+            p(ng-if='!user.checkins || user.checkins.length === 0') No checkins yet...
+        md-tab(label='follows')
+          md-content.md-padding
+            md-list
+              span(ng-repeat='follow in user.follows')
+                md-list-item.md-2-line(ng-show='follow.beer' ng-href='/beers/{{follow.beer._id}}')
+                  md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-800"}')
+                    i.material-icons local_drink
+                  p {{follow.beer.breweries[0].nameShortDisplay}} {{follow.beer.name}}
+                  md-button.md-secondary.md-icon-button(ng-if='state==="me"' ng-click='removeFollow(follow)')
+                    md-icon
+                      i.material-icons delete
+                md-list-item.md-2-line(ng-show='follow.brewery' ng-href='/breweries/{{follow.brewery._id}}')
+                  md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-400"}')
+                    i.material-icons local_drink
+                  p {{follow.brewery.name}}
+                  md-button.md-secondary.md-icon-button(ng-if='state==="me"' ng-click='removeFollow(follow)')
+                    md-icon
+                      i.material-icons delete
+                md-list-item(ng-show='follow.store' ng-href='/stores/{{follow.store._id}}')
+                  md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-200"}')
+                    i.material-icons store
+                  p {{follow.store.name}}
+                  md-button.md-secondary.md-icon-button(ng-if='state==="me"' ng-click='removeFollow(follow)')
+                    md-icon
+                      i.material-icons delete
+                md-divider
+            p(ng-if='!user.follows || user.follows.length === 0') No follows yet...
+  
+
+md-content(ng-show='status === "error"' layout-padding)
+  h1 An error occurred!
+  p It looks like this user is either private or doesn't exist.
+  

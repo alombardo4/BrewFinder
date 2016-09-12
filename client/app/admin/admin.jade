@@ -1,0 +1,19 @@
+md-content(layout-padding)
+  h4 Admin Routes
+  div(layout='row')
+    md-button.md-raised(href='/store/new') New Store
+    md-button.md-raised(ui-sref='importStore') Import Stores
+    md-button.md-raised(href='/brewerydb') BreweryDB Updates
+    md-button.md-raised(href='/localities') Localities
+  h4 Manage Users
+  p The delete user and user index api routes are restricted to users with the 'admin' role.
+  md-list
+    md-list-item.md-2-line(ng-repeat='user in admin.users')
+      div.md-list-item-text
+        p
+          strong {{user.name}}
+        p {{user.email}}
+      md-button.md-secondary.md-icon-button(ng-click='admin.delete(user)')
+        md-icon
+          i.material-icons delete
+      md-divider

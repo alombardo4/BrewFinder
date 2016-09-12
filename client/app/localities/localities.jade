@@ -1,0 +1,22 @@
+h1 Localities
+md-divider
+p Add Locality
+form(ng-submit='addLocality(locality)' layout='row' layout-align='start start')
+  md-input-container
+    label Zip
+    input(type='text' ng-model='locality.zip' required)
+  md-input-container
+    label City (all caps)
+    input(type='text' ng-model='locality.city' required)
+  md-input-container
+    label State (all caps, abbreviated)
+    input(type='text' ng-model='locality.state' required)
+  md-button.md-raised(type='submit') Add
+md-divider
+md-list
+  md-list-item(ng-repeat='locality in localities')
+    p {{locality.city}}, {{locality.state}} ({{locality.zipCodes.length}})
+    md-button.md-secondary.md-icon-button(ng-click='deleteLocality(locality)')
+      md-icon
+        i.material-icons delete
+    md-divider

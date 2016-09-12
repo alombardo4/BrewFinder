@@ -1,0 +1,32 @@
+md-card
+  md-card-title
+    h3.md-card-title-text Donate to BottleSpotter
+  md-divider
+  md-card-content(layout-align='center center')
+    p We keep BottleSpotter running purely because it's fun and we want to give to the Atlanta craft beer community.
+    p That said, running the site does have some costs. We'd love to accept any donations you'd like to make to BottleSpotter. This site runs on the blood, sweat, and tears (and a little bit of money) from our&nbsp
+      a(ui-sref='about') team
+      | , but if you want to help out, that'd be great.
+    p For transparency's sake, here's the infrastructure we use costs us right now:
+    p
+      ul
+        li Server: $20 / month (increases with usage)
+        li API Access: $6 / month
+        li Domain Name: $11 / year
+    p So, that puts our monthly costs at a bit under $30 per month, but it'll likely go up if we need to expand. If you'd like to help us pay the bills (or buy us some beer), please use the form below.
+    md-card()
+      md-card-title
+        h4.md-card-title-text Donate to BottleSpotter
+      md-card-content(layout-align='center center')
+        form(ng-show='!submitted && !donated' ng-submit='submitAmount(amount)' layout='row' layout-align='start start')
+          md-input-container.md-icon-float.md-icon-left.md-block
+            md-icon
+              i.material-icons attach_money
+            label Amount
+            input(type='number' ng-model='amount')
+          md-button.md-accent.md-raised.md-hue-3(type='submit') Submit
+        div(layout='column' layout-align='center center' ng-show='submitted && !donated')
+          p Donating: ${{amount}}
+          md-button.md-accent.md-raised.md-hue-3(stripe-checkout='doCheckout' data-email='{{user.email}}' data-name='Donate to BottleSpotter' data-description='Thanks! :)' data-amount='{{amount*100}}' data-key='stripe_pk') Donate
+        div(ng-show='donated')
+          p Thank you so much for your donation!

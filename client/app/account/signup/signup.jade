@@ -1,0 +1,55 @@
+md-card
+  md-card-title
+    h1 Sign Up
+  md-card-content
+    form(name='form', ng-submit='vm.register(form)', novalidate='')
+      md-input-container(layout-fill)
+        label Name
+        input(type='text', name='name', ng-model='vm.user.name', required='')
+        p(ng-show='form.name.$error.required && vm.submitted')
+          | A name is required
+      md-input-container(layout-fill)
+        label Alias (optional)
+        input(type='text' name='alias' ng-model='vm.user.alias')
+        p(ng-show='form.alias.$error.mongoose')
+          | {{ vm.errors.alias }}
+      md-input-container(layout-fill)
+        label Email
+        input(type='email', name='email', ng-model='vm.user.email', required='', mongoose-error='')
+        p(ng-show='form.email.$error.email && vm.submitted')
+          | Doesn't look like a valid email.
+        p(ng-show='form.email.$error.required && vm.submitted')
+          | What's your email address?
+        p(ng-show='form.email.$error.mongoose')
+          | {{ vm.errors.email }}
+
+      md-input-container(layout-fill)
+        label Password
+        input(type='password'
+          name='password'
+          ng-model='vm.user.password'
+          mongoose-error=''
+          ng-minlength='3', required='')
+
+        p(ng-show='(form.password.$error.minlength || form.password.$error.required) && vm.submitted')
+          | Password must be at least 3 characters.
+        p(ng-show='form.password.$error.mongoose')
+          | {{ vm.errors.password }}
+
+      md-input-container(layout-fill)
+        label Confirm Password
+        input(type='password'
+          name='confirmPassword'
+          ng-model='vm.user.confirmPassword'
+          match="vm.user.password"
+          ng-minlength='3', required='')
+        p(ng-show='form.confirmPassword.$error.match && vm.submitted')
+          | Passwords must match.
+      p By signing up, you agree to our&nbsp
+        a(ui-sref='terms-and-conditions') Terms and Conditions
+      span(layout-fill layout='row' layout-align='end end')
+        md-button.md-accent.md-raised(type='submit')
+          | Sign up
+        
+        md-button.md-primary.md-raised(ui-sref='login')
+          | Login

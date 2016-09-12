@@ -1,0 +1,33 @@
+/**
+ * Locality model events
+ */
+
+'use strict';
+
+import {EventEmitter} from 'events';
+import Locality from './Locality.model';
+var LocalityEvents = new EventEmitter();
+
+// Set max event listeners (0 == unlimited)
+LocalityEvents.setMaxListeners(0);
+
+// Model events
+var events = {
+  'save': 'save',
+  'remove': 'remove'
+};
+
+// Register the event emitter to the model events
+for (var e in events) {
+  var event = events[e];
+  Locality.schema.post(e, emitEvent(event));
+}
+
+function emitEvent(event) {
+  return function(doc) {
+    LocalityEvents.emit(event + ':' + doc._id, doc);
+    LocalityEvents.emit(event, doc);
+  }
+}
+
+export default LocalityEvents;

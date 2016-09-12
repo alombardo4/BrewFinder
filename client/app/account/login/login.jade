@@ -1,0 +1,16 @@
+md-card
+  md-card-title
+    h1 Login
+  md-card-content
+    p(ng-if='vm.errors.other' style='color: red') {{vm.errors.other}}
+    br
+    form(name='form' ng-submit='vm.login(form)' novalidate='')
+      md-input-container(layout-fill)
+        label Email
+        input(type='email' name='email' ng-model='vm.user.email')
+      md-input-container(layout-fill)
+        label Password
+        input(type='password' name='password' ng-model='vm.user.password')
+      span(layout-fill layout='row' layout-align='end end')
+        md-button.md-accent.md-raised(type='submit') Log In
+        md-button.md-primary.md-raised(ui-sref='signup') Sign Up

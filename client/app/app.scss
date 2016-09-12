@@ -1,0 +1,79 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+@import '../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import '../bower_components/bootstrap-social/bootstrap-social.scss';
+$fa-font-path: "../bower_components/font-awesome/fonts";
+@import '../bower_components/font-awesome/scss/font-awesome';
+
+/**
+ * App-wide Styles
+ */
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+md-input-container.nav-search > label {
+
+  font-weight: 400;
+
+}
+
+input.search, label.search {
+  color: white !important;
+}
+input.search::-webkit-input-placeholder, input.search:moz-placeholder, input.search::moz-placeholder, input.search:ms-input-placeholder {
+   color: white !important;
+}
+
+form.search > md-input-container, form.search > md-icon, form.search > md-select, form.search > button {
+  height: 52px;
+}
+i.material-icons.search {
+  height: 32px;
+  width: 32px;
+  font-size: 32px;
+  margin-left: -4px;
+  margin-right: -4px;
+}
+.transparent{
+  background-color: transparent !important;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+/* Safari only */
+  a.md-fab > md-icon, a.md-fab > md-icon > i.material-icons {
+    line-height: 8px !important;
+  }
+}
+
+@-moz-document url-prefix() {
+  a.md-fab > md-icon, a.md-fab > md-icon > i.material-icons {
+    line-height: 8px !important;
+  }
+}
+div.details-page {
+  text-align: center;
+}
+
+
+
+// Component styles are injected through grunt
+// injector
+@import 'Search/Search.scss';
+@import 'admin/admin.scss';
+@import 'beer/beer.scss';
+@import 'breweries/breweries.scss';
+@import 'checkins/checkins.scss';
+@import 'donate/donate.scss';
+@import 'legalese/legalese.scss';
+@import 'localities/localities.scss';
+@import 'main/main.scss';
+@import 'store/store.scss';
+@import 'stores/stores.scss';
+@import 'user/user.scss';
+@import '../components/footer/footer.scss';
+@import '../components/modal/modal.scss';
+@import '../components/oauth-buttons/oauth-buttons.scss';
+// endinjector

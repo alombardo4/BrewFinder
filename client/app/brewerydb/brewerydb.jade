@@ -1,0 +1,11 @@
+md-content(ng-init='init()' layout-padding)
+  h1 BreweryDB Updates
+  p Total Updates: {{count}}
+  
+  p Most recent updates:
+  md-list
+    md-list-item(ng-repeat='update in updates')
+      p {{update.date | date: 'short'}} - {{update.type}} {{update.apiID}}
+      md-divider
+        
+

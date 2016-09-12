@@ -1,0 +1,53 @@
+div(layout='column' layout-gt-xs='row')
+  div.details-page(layout='column' layout-align='center center' flex-gt-xs='30')
+    img.img-responsive(ng-src='{{beer.labels.large}}')
+    h3 {{beer.name}}
+    p
+      a(ng-repeat='brewery in beer.breweries' href='/breweries/{{brewery._id}}') {{brewery.name}}
+        span(ng-if="!$last") ,&nbsp
+    p(ng-if='beer.style && beer.style.name')
+      strong Style:&nbsp
+      | {{beer.style.name}}
+    p(ng-if='beer.abv')
+      strong ABV:&nbsp
+      | {{beer.abv}}
+    p(ng-if='beer.ibu')
+      strong IBUs:&nbsp
+      | {{beer.ibu}}
+    div(layout='row')
+      md-button.md-accent.md-raised(ng-href='/checkin/new?beer={{beer._id}}') Checkin
+      md-button.md-raised.md-primary(ng-show='auth.isLoggedIn()' ng-click='createFollow()') Follow
+  md-card(flex-gt-xs='70')
+    md-card-content(layout='column' layout-align='space-between start')
+      div
+        h4 Details
+        p {{beer.description}}
+        p(ng-if='beer.year')
+          strong Year:&nbsp
+          | {{beer.year}}
+        p(ng-if='beer.glass && beer.glass.name')
+          strong Recommended Glass:&nbsp
+          | {{beer.glass.name}}
+        p(ng-if='beer.foodPairings')
+          strong Food Pairings:&nbsp
+          | {{beer.foodPairings}}
+        p(ng-if='beer.servingTemperatureDisplay')
+          strong Serving Temperature:&nbsp
+          | {{beer.servingTemperatureDisplay}}
+        p(ng-if='beer.available')
+          strong Availability:&nbsp
+          | {{beer.available.name}}
+      div
+        h4 Recent Checkins
+        div(layout='row' layout-xs='column' layout-align-xs='start center' layout-wrap layout-align='space-around stretch')
+          md-card(ng-repeat='checkin in checkins | limitTo: 6')
+            md-card-content.beer-checkin(layout='column' layout-align='center center')
+              div.checkin-circle(md-colors='::{backgroundColor: "default-accent-600"}')
+                p {{checkin.quantity}}
+              p
+                a(ng-href='/checkins/{{checkin._id}}') {{checkin.packageType}}
+              p
+                a(ng-href='/checkins/{{checkin._id}}') {{checkin.time | date: 'short'}}
+              p
+                a(ng-href='/stores/{{checkin.store._id}}') {{checkin.store.name}}
+        p(ng-hide='checkins.length > 0') No checkins found nearby...

@@ -1,0 +1,61 @@
+md-card
+  md-card-title
+    h3.md-card-title-text Search Results
+  md-card-content
+    p Enter search query
+    form(ng-submit='search()' layout='row' layout-align='center start' layout-wrap)
+      md-input-container()
+        label &nbsp
+        input(type='text' ng-model='searchData.text' autocomplete='off' placeholder='search')
+      md-input-container(ng-if='searchData.searchMode === "store"')
+        label &nbsp
+        input(type='text' ng-model='searchData.zip' autocomplete='off' placeholder='zip code')
+      md-input-container
+        label &nbsp
+        md-select(aria-label='searchMode' ng-model='searchData.searchMode')
+          md-option(value='beer') Beer
+          md-option(value='brewery') Brewery
+          md-option(value='store') Store
+      md-button.md-fab.md-raised.md-accent(type='submit')
+        md-icon
+          i.material-icons search
+md-card
+  md-card-content
+    p Found {{count}} results
+    div(ng-if='mode==="beer"')
+      md-list
+        md-list-item.md-2-line(ng-repeat='beer in beers' ng-href='/beers/{{beer._id}}')
+          md-icon.md-avatar-icon(ng-if='!beer.labels' md-colors='::{backgroundColor: "default-accent-800"}')
+            i.material-icons local_drink
+          img.md-avatar(ng-if='beer.labels' ng-src='{{beer.labels.icon}}')
+          div.md-list-item-text(layout='column')
+            h4 {{beer.name}}
+            p {{beer.breweries[0].name}}
+          md-button.md-secondary(ng-href='/checkin/new?beer={{beer._id}}') Checkin
+          md-divider(ng-if='!$last')
+      p Don't see what you're looking for?&nbsp
+        a(href='http://www.brewerydb.com/add' target='_blank') Add it!
+          
+    div(ng-if='mode==="brewery"')
+      md-list
+        md-list-item.md-2-line(ng-repeat='brewery in breweries' ng-href='/breweries/{{brewery._id}}')
+          md-icon.md-avatar-icon(ng-if='!brewery.images' md-colors='::{backgroundColor: "default-accent-800"}')
+            i.material-icons local_drink
+          img.md-avatar(ng-if='brewery.images' ng-src='{{brewery.images.icon}}')
+          div.md-list-item-text(layout='column')
+            h4 {{brewery.name}}
+            p {{brewery.locations[0].locality}}, {{brewery.locations[0].region}}
+          md-divider(ng-if='!$last')
+      p Don't see what you're looking for?&nbsp
+        a(href='http://www.brewerydb.com/add' target='_blank') Add it!
+  
+
+    div(ng-if='mode==="store"')
+      md-list
+        md-list-item.md-2-line(ng-repeat='store in stores' ng-href='/stores/{{store._id}}')
+          md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-200"}')
+            i.material-icons store
+          div.md-list-item-text(layout='column')
+            h4 {{store.name}}
+            p {{store.address}}
+          md-divider(ng-if='!$last')

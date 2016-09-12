@@ -1,0 +1,73 @@
+div(layout='row' layout-align='center center')
+  img(flex='80' src='/assets/images/wordmark.svg')
+md-card
+  md-card-content
+    p BottleSpotter is made to help you find your next beer. We keep track of where people find different beers so that our users can more easily find the rare craft brews they're looking for.
+      | BottleSpotter is made and maintained by a 
+      a(ui-sref='about') two man
+      | &nbspteam in Atlanta to help the craft beer community. If you like using BottleSpotter, consider 
+      a(ui-sref='donate') donating
+      | &nbspto help us cover server costs.
+    p To participate in the community, 
+      a(ui-sref='signup') create an account
+      | &nbsp and check in beers when you find them at liquor stores, bottle shops, and grocery stores.
+    p We track which users have the most checkins in a given area and will feature them on the front page. Check out the Top Local Beers section to get an idea of what's popular right now, and Recent Checkins to see what the new hotness is.
+md-card(ng-hide='zip')
+  md-card-content
+    p It seems we can't figure out where you're located. Please enter your zip code.
+    form(ng-submit='saveZip(inputZip)' layout='row' layout-align='center start')
+      md-input-container
+        label Zip Code
+        input(type='number' ng-model='inputZip' required)
+      md-button.md-accent.md-raised(type='submit') Submit
+div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='center start')
+  md-card(flex-gt-sm='30' flex-sm)
+    md-card-title.md-whiteframe-z1(md-colors='::{backgroundColor: "default-accent-400"}')
+      md-card-title-text
+        span.md-headline Top Local Beers
+    md-divider
+    md-card-content
+      p(ng-show='loadingTopLocal') Loading...
+      span(ng-hide='loadingTopLocal')
+        md-list
+          md-list-item.md-2-line(ng-repeat='beer in topLocalBeers | orderBy: "-checkinCount"' ng-href='/beers/{{beer.beer._id}}')
+            md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-800"}')
+              i.material-icons local_drink
+            div.md-list-item-text(layout='column')
+              h3 {{beer.beer.breweries[0].nameShortDisplay || beer.beer.breweries[0].name}} {{beer.beer.name}}
+            md-divider(ng-if='!$last')
+        p(ng-if='!topLocalBeers || topLocalBeers.length === 0') No checkins yet...
+  md-card(flex-gt-sm='30' flex-sm)
+    md-card-title.md-whiteframe-z1(md-colors='::{backgroundColor: "default-accent-400"}')
+      md-card-title-text
+        span.md-headline Recent Checkins
+    md-divider
+    md-card-content
+      p(ng-show='loadingRecentCheckins') Loading...
+      span(ng-hide='loadingRecentCheckins')
+        md-list
+          md-list-item.md-2-line(ng-repeat='checkin in checkins' ng-href='/checkins/{{checkin._id}}')
+            md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-600"}')
+              i.material-icons local_drink
+            div.md-list-item-text(layout='column')
+              h3 {{checkin.beer.breweries[0].nameShortDisplay || checkin.beer.breweries[0].name}} {{checkin.beer.name}}
+              p {{checkin.store.name}}
+            md-divider(ng-if='!$last')
+        p(ng-if='!checkins || checkins.length === 0') No checkins yet...
+  md-card(flex-gt-sm='30' flex-sm)
+    md-card-title.md-whiteframe-z1(md-colors='::{backgroundColor: "default-accent-400"}')
+      md-card-title-text
+        span.md-headline Top Users
+    md-divider
+    md-card-content
+      p(ng-show='loadingTopUsers') Loading...
+      span(ng-hide='loadingTopUsers')
+        md-list
+          md-list-item.md-2-line(ng-repeat='user in topLocalUsers | orderBy: "-checkinCount"' ng-href='/users/{{user.user._id}}')
+            md-icon.md-avatar-icon(md-colors='::{backgroundColor: "default-accent-50"}')
+              i.material-icons face
+            div.md-list-item-text(layout='column')
+              h3 {{user.user.alias || user.user.name}}
+              p {{user.checkinCount}} checkins
+            md-divider(ng-if='!$last')
+        p(ng-if='!topLocalUsers || topLocalUsers.length === 0') No top users yet...

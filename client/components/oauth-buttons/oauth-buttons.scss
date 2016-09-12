@@ -1,0 +1,17 @@
+.facebook {
+  background-color: #3b5998;
+}
+
+.google {
+  background-color: #dd4b39;
+}
+
+.twitter {
+  background-color: #55acee;
+}
+
+.md-button.md-default-theme.facebook:not([disabled]):hover, .md-button.facebook:not([disabled]):hover,
+.md-button.md-default-theme.google:not([disabled]):hover, .md-button.google:not([disabled]):hover,
+.md-button.md-default-theme.twitter:not([disabled]):hover, .md-button.twitter:not([disabled]):hover {
+  background-color: rgba(200,200,200,0.9);
+}

@@ -1,0 +1,19 @@
+div.row.beer-row button {
+  margin: 2px;
+}
+
+div.checkin-circle {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  color: white;
+}
+div.checkin-circle > p {
+  color: white;
+  line-height: 60px;
+  text-align: center;
+  font-size: 20px;
+}
+md-card-content.beer-checkin > p {
+  text-align: center;
+}

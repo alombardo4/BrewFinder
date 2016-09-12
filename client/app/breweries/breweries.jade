@@ -1,0 +1,29 @@
+div(layout='column' layout-align='start start' layout-gt-xs='row')
+  div.details-page(layout='column' layout-align='center center' flex-gt-xs='30')
+    img.img-responsive(ng-src='{{brewery.images.large}}')
+    h3 {{brewery.name}}
+    p(ng-if='brewery.locations.length > 0') {{brewery.locations[0].locality}}, {{brewery.locations[0].region}}
+
+    //- p {{brewery}}
+    div(layout='row')
+      md-button.md-raised.md-primary(ng-show='auth.isLoggedIn()' ng-click='createFollow()') Follow
+  md-card(flex-gt-xs='70')
+    md-card-content(layout='column' layout-align='stretch center' md-dynamic-height)
+      div(ng-if='brewery.description')
+        h4 Details
+        p {{brewery.description}}
+      md-tabs(md-stretch-tabs='always' md-dynamic-height md-border-bottom)
+        md-tab(label='Beers')
+          md-content.md-padding
+            md-list(ng-show='brewery.beers.length > 0')
+              md-list-item(ng-repeat='beer in brewery.beers' ng-href='/beers/{{beer._id}}')
+                p {{beer.name}}
+                md-divider(ng-if='!$last')
+            p(ng-hide='brewery.beers.length > 0') This brewery doesn't have any beers yet...
+        md-tab(label='locations')
+          md-content.md-padding
+            md-list(ng-show='brewery.locations.length > 0')
+              md-list-item(ng-repeat='location in brewery.locations')
+               h5 {{location.name}} - {{location.streetAddress}}, {{location.locality}}, {{location.region}} {{location.postalCode}}
+               md-divider(ng-if='!$last')
+            p(ng-hide='brewery.locations.length > 0') This brewery doesn't have any locations yet...

@@ -1,0 +1,24 @@
+md-content(ng-init='init()')
+  div(layout-padding)
+    h2 Nearby Checkins
+  div(layout-sm='column' layout='row' layout-wrap layout-align-gt-sm='center start')
+    md-card(flex flex-gt-sm='45' ng-repeat='checkin in checkins | orderBy: "-time"')
+      md-card-title
+        md-card-title-text
+          span.md-headline
+            a(ng-href='/beers/{{checkin.beer._id}}') {{checkin.beer.name}}
+          span.md-subhead
+            p
+              a(ng-href='/breweries/{{checkin.beer.breweries[0]._id}}') {{checkin.beer.breweries[0].name}}
+            p {{checkin.time | date: 'short'}}
+            p Found At:&nbsp
+              a(ng-href='/stores/{{checkin.store._id}}') {{checkin.store.name}}
+            p
+              a(ng-href='/checkins/{{checkin._id}}') View details...
+        md-card-media
+          div.md-media-sm.card-media
+            a(ng-href='/checkins/{{checkin._id}}')
+              img(ng-src='{{checkin.beer.labels.medium}}')
+        
+        
+

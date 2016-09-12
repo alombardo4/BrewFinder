@@ -1,0 +1,43 @@
+md-card
+  md-card-title
+    h1 Settings
+  md-card-content
+    form.form(layout='column' layout-align='start stretch' name='form', ng-submit='vm.changePassword(form)', novalidate='')
+      md-input-container
+        label Current Password
+        input(type='password'
+          name='password'
+          ng-model='vm.user.oldPassword'
+          mongoose-error='')
+        p(ng-show='form.password.$error.mongoose')
+          | {{ vm.errors.other }}
+      md-input-container
+        label New Password
+        input(type='password'
+          name='newPassword'
+          ng-model='vm.user.newPassword'
+          ng-minlength='3')
+        p(ng-show='(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || vm.submitted)')
+          | Password must be at least 3 characters.
+      md-input-container()
+        label Confirm New Password
+        input(type='password'
+          name='confirmPassword'
+          ng-model='vm.user.confirmPassword'
+          match="vm.user.newPassword"
+          ng-minlength='3')
+        p(ng-show='fvm.orm.confirmPassword.$error.match && vm.submitted')
+          | Passwords must match.
+      md-input-container
+        label Alias (optional)
+        input(type='text' name='alias' ng-model='vm.user.alias')
+        p(ng-show='form.alias.$error.mongoose')
+          | {{ vm.errors.alias }}
+      md-input-container
+        label Bio
+        input(type='text' name='bio' ng-model='vm.user.bio')
+      p  {{ vm.message }}
+      span(layout-fill layout='row' layout-align='end end')
+        md-button.md-primary.md-raised(type='submit') Save Changes
+
+    

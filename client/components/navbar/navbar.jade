@@ -1,0 +1,47 @@
+md-toolbar.md-primary.md-hue-2.md-whiteframe-z1(ng-controller='NavbarController' ng-init='init()' layout='row')
+  div.md-toolbar-tools
+    md-button.md-icon-button(ng-click='toggleMenu()')
+      md-icon
+        i.material-icons menu
+    span(flex ng-if='!large && !medium')
+    a(ng-if='true' ui-sref='main')
+      img(src='assets/images/wordmark.svg' style='width:180px')
+    span(flex)
+    form.search(ng-if='large || medium' ng-submit='search()' layout='row' layout-align='center center' layout-padding)
+      md-input-container.nav-search(layout='row' layout-align='space-between center')
+        label.search &nbsp
+        input.search(type='text' ng-model='searchData.text' required autocomplete='off' placeholder='search')
+      md-input-container.nav-search(ng-if='searchData.searchMode === "store"' layout='row' layout-align='space-between center')
+        label.search &nbsp
+        input.search(type='text' ng-model='searchData.zip' required autocomplete='off' placeholder='zip code')
+      md-select(aria-label='searchMode' ng-model='searchData.searchMode')
+        md-option(value='beer') Beer
+        md-option(value='brewery') Brewery
+        md-option(value='store') Store
+      md-button.md-icon-button(type='submit')
+        md-icon
+          i.material-icons search
+    
+    md-button.md-icon-button(ng-if='!large && !medium' ui-sref='Search')
+      md-icon
+        i.material-icons search
+    span(flex ng-if='large')
+    span(ng-if='auth.isLoggedIn() && large')
+      md-button(ng-href='/users/{{user._id}}') {{user.alias || user.name}}
+    span(ng-if='!auth.isLoggedIn() && large')
+      md-button(ui-sref='login') Login
+      md-button(ui-sref='signup') Sign Up
+
+        //- 
+        //- form.navbar-form.navbar-left(ng-submit='search()')
+        //-   div.form-group
+        //-     input.form-control(type='text' placeholder='Search' autocomplete='off' ng-model='searchData.text' required)
+        //-   div.form-group(ng-show='searchData.mode === "store"')
+        //-     input.form-control(type='text' placeholder='Zip code' autocomplete='off' ng-model='searchData.zip')
+          //- div.form-group
+          //-   select.form-control(ng-model='searchData.mode')
+          //-     option(value='beer') Beer
+          //-     option(value='brewery') Brewery
+          //-     option(value='store') Store
+          //-     
+          //- button.btn.btn-default(type='submit') Go

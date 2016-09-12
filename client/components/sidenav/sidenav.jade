@@ -1,0 +1,48 @@
+md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left' aria-label='show menu' md-is-open='menu.isOpen' md-disable-backdrop)
+  md-toolbar.md-primary.md-hue-2.md-whiteframe-z1(layout='row' layout-align='space-between center')
+    h1.md-toolbar-tools Menu
+    md-button.md-icon-button(ng-click='toggleMenu()')
+      md-icon
+        i.material-icons close
+  md-content(layout-padding flex)
+    md-list(ng-if='auth.isLoggedIn()')
+      md-list-item(ng-click='hideMenu()' ui-sref='main')
+        md-icon
+          i.material-icons home
+        p Home
+        md-divider
+      md-list-item(ng-click='hideMenu()' ng-href='/users/{{user._id}}')
+        md-icon
+          i.material-icons account_box
+        p My Account
+        md-divider
+      md-list-item(ng-click='hideMenu()' ui-sref='settings')
+        md-icon
+          i.material-icons settings
+        p Settings
+        md-divider        
+      md-list-item(ng-click='hideMenu()' ui-sref='logout')
+        md-icon
+          i.material-icons exit_to_app
+        p Log out
+    md-list(ng-if='!auth.isLoggedIn()')
+      md-list-item(ng-click='hideMenu()' ui-sref='main')
+        md-icon
+          i.material-icons home
+        p Home
+        md-divider      
+      md-list-item(ng-click='hideMenu()' ui-sref='login')
+        md-icon
+          i.material-icons person
+        p Log In
+        md-divider 
+      md-list-item(ng-click='hideMenu()' ui-sref='signup')
+        md-icon
+          i.material-icons person_add
+        p Sign Up
+    md-list(ng-if='auth.isAdmin()')
+      md-list-item(ng-click='hideMenu()' ui-sref='admin')
+        md-icon
+          i.material-icons dashboard
+        p Admin
+  span(flex)

@@ -1,0 +1,34 @@
+md-content(ng-init='init()' layout-fill layout-padding)
+  h1 Create Checkin
+  md-card
+    md-card-content
+      form(ng-submit='saveCheckin()' name='form')
+        h4 Beer
+        md-autocomplete(required md-selected-item='checkin.beer' md-search-text='searchBeerTerm' md-items='item in getBeers(searchBeerTerm)' md-item-text='item.name + " - " + item.breweries[0].name')
+          md-item-template
+            span(md-highlight-text="searchBeerTerm") {{item.name}} - {{item.breweries[0].name}}
+        h4 Store
+        md-autocomplete(required md-selected-item='checkin.store' md-search-text='searchStoreTerm' md-items='item in getStores(searchStoreTerm)' md-item-text='item.name + " - " + item.address')
+          md-item-template
+            span(md-highlight-text="searchStoreTerm") {{item.name}} - {{item.address}}
+        h4 Quantity
+        div(layout='row')
+          md-input-container
+            label Number
+            input(type='number' required ng-model='checkin.quantity')
+          md-input-container
+            label Type
+            md-select(style='width: 120px;' ng-model='checkin.packageType' required)
+              md-option(value='6-pack') 6-pack
+              md-option(value='4-pack') 4-pack
+              md-option(value='Bottles (12oz)') Bottles (12oz)
+              md-option(value='Bottles (750ml)') Bottles (750ml)
+              md-option(value='Bottles (other)') Bottles (other)
+              md-option(value='Cans') Cans
+              md-option(value='Growler tap') Growler tap
+        div(layout='row' ng-if='form.$error && form.$submitted')
+          p.md-warn(style='color: red' ng-show='form.$error.required') Please fill out all fields to check in a beer!
+          p.md-warn(ng-show='error && !form.$error.required' style='color:red') {{error}}
+
+        div(layout='row' layout-align='end center')
+          md-button.md-raised.md-primary(type='submit') Save

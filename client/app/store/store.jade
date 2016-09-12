@@ -1,0 +1,34 @@
+div.container(ng-init='init()')
+  h1(ng-if='mode === "create"') New Store
+  h1(ng-if='mode === "update"') Update Store
+  form(ng-submit='save()')
+    div.row
+      div.form-group
+        label Name*
+        input.form-control(type='text' required ng-model='store.name')
+    div.row
+      div.form-group
+        label Description*
+        input.form-control(type='text' required ng-model='store.description')
+    div.row
+      div.form-group
+        label Phone*
+        input.form-control(type='tel' required ng-model='store.phone')
+    div.row
+      div.form-group
+        label Website*
+        input.form-control(type='url' required ng-model='store.website')
+    div.row
+      div.form-group
+        label Google Maps URL
+        input.form-control(type='url' ng-model='store.gmapsUrl')
+    div.row
+      p Location
+      div.form-group
+        label Address*
+        input.form-control(type='text' required ng-model='store.address')
+      div.form-group
+        lable Postal Code*
+        input.form-control(type='text' required ng-model='store.location.postalCode')
+    div.row
+      button.btn.btn-success(type='submit') Save

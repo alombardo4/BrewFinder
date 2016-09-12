@@ -1,0 +1,178 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <base href="/">
+    <title>BottleSpotter</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+    <!-- <meta name="viewport" content="width=device-width"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffd551">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffd551">
+    <meta name="apple-mobile-web-app-title" content="BottleSpotter">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- build:css(client) app/vendor.css -->
+      <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+      <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,client}) app/app.css -->
+      <link rel="stylesheet" href="app/app.css">
+      <!-- injector:css -->
+      <!-- endinjector -->
+    <!-- endbuild -->
+  </head>
+  <body ng-app="brewfinderwebApp" layout="row">
+    <!--[if lt IE 7]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <sidenav></sidenav>
+    <div layout='column' flex>
+      <navbar></navbar>
+      <md-content md-scroll-y layout='column' flex>
+        <div ui-view="" layout-padding flex='noshrink'></div>
+        <footer layout-padding></footer>
+      </md-content>
+      <md-button class='md-icon-button md-fab md-fab-bottom-left md-accent md-hue-2' aria-label='search' ui-sref='Search'>
+        <md-icon>
+          <i class='material-icons'>search</i>
+        </md-icon>
+      </md-button>
+      <md-button class='md-icon-button md-fab md-fab-bottom-right md-accent' aria-label='checkin' ui-sref='newCheckin'>
+        <md-icon>
+          <i class='material-icons'>add</i>
+        </md-icon>
+      </md-button>
+    </div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-XXXXX-X');
+      ga('send', 'pageview');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <!-- build:js({client,node_modules}) app/vendor.js -->
+      <!-- bower:js -->
+      <script src="bower_components/jquery/dist/jquery.js"></script>
+      <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/angular-resource/angular-resource.js"></script>
+      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/angular-socket-io/socket.js"></script>
+      <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.js"></script>
+      <script src="bower_components/angular-aria/angular-aria.js"></script>
+      <script src="bower_components/angular-messages/angular-messages.js"></script>
+      <script src="bower_components/angular-material/angular-material.js"></script>
+      <script src="bower_components/angular-stripe-checkout/angular-stripe-checkout.js"></script>
+      <!-- endbower -->
+      <script src="socket.io-client/socket.io.js"></script>
+    <!-- endbuild -->
+    <!-- build:js(.tmp) app/app.js -->
+      <script src="app/app.js"></script>
+      <!-- injector:js -->
+      <script src="app/admin/admin.module.js"></script>
+      <script src="components/auth/auth.module.js"></script>
+      <script src="components/util/util.module.js"></script>
+      <script src="app/location/location.service.js"></script>
+      <script src="app/account/settings/settings.controller.js"></script>
+      <script src="app/account/signup/signup.controller.js"></script>
+      <script src="app/admin/admin.controller.js"></script>
+      <script src="app/Search/Search.controller.js"></script>
+      <script src="app/admin/admin.router.js"></script>
+      <script src="app/app.constant.js"></script>
+      <script src="app/beer/beer.controller.js"></script>
+      <script src="app/beer/beer.js"></script>
+      <script src="app/beer/beer.service.js"></script>
+      <script src="app/breweries/breweries.controller.js"></script>
+      <script src="app/breweries/breweries.js"></script>
+      <script src="app/breweries/breweries.service.js"></script>
+      <script src="app/brewerydb/brewerydb.controller.js"></script>
+      <script src="app/brewerydb/brewerydb.js"></script>
+      <script src="app/brewerydb/brewerydb.service.js"></script>
+      <script src="app/checkins/checkin.controller.js"></script>
+      <script src="app/checkins/checkins.controller.js"></script>
+      <script src="app/checkins/checkins.js"></script>
+      <script src="app/checkins/checkins.service.js"></script>
+      <script src="app/checkins/new-checkin.controller.js"></script>
+      <script src="app/donate/donate.controller.js"></script>
+      <script src="app/donate/donate.js"></script>
+      <script src="app/follow/follow.service.js"></script>
+      <script src="app/legalese/about.controller.js"></script>
+      <script src="app/legalese/legalese.js"></script>
+      <script src="app/localities/localities.controller.js"></script>
+      <script src="app/localities/localities.js"></script>
+      <script src="app/localities/localities.service.js"></script>
+      <script src="app/Search/Search.js"></script>
+      <script src="app/main/main.controller.js"></script>
+      <script src="app/main/main.js"></script>
+      <script src="app/menu/menu.service.js"></script>
+      <script src="app/stats/stats.service.js"></script>
+      <script src="app/store/import-store.controller.js"></script>
+      <script src="app/store/store.controller.js"></script>
+      <script src="app/store/store.js"></script>
+      <script src="app/stores/stores.controller.js"></script>
+      <script src="app/stores/stores.js"></script>
+      <script src="app/stores/stores.service.js"></script>
+      <script src="app/user/user.controller.js"></script>
+      <script src="app/user/user.js"></script>
+      <script src="app/userprofiles/userprofiles.service.js"></script>
+      <script src="components/Search/Search.service.js"></script>
+      <script src="app/account/account.js"></script>
+      <script src="components/auth/auth.service.js"></script>
+      <script src="components/auth/interceptor.service.js"></script>
+      <script src="components/auth/router.decorator.js"></script>
+      <script src="components/auth/user.service.js"></script>
+      <script src="components/footer/footer.directive.js"></script>
+      <script src="components/modal/modal.service.js"></script>
+      <script src="components/mongoose-error/mongoose-error.directive.js"></script>
+      <script src="components/navbar/navbar.controller.js"></script>
+      <script src="components/navbar/navbar.directive.js"></script>
+      <script src="components/oauth-buttons/oauth-buttons.controller.js"></script>
+      <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
+      <script src="components/sidenav/sidenav.controller.js"></script>
+      <script src="components/sidenav/sidenav.directive.js"></script>
+      <script src="components/socket/socket.service.js"></script>
+      <script src="app/account/login/login.controller.js"></script>
+      <script src="components/util/util.service.js"></script>
+      <!-- endinjector -->
+    <!-- endbuild -->
+  </body>
+</html>

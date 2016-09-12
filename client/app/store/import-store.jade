@@ -1,0 +1,22 @@
+h1 Import
+md-card
+  md-card-title
+    h4 Search by Locality
+  md-card-content
+    form(ng-submit='searchPlaces(locality)' layout='row')
+      md-input-container
+        label Locality
+        md-select(ng-model='locality' required)
+          md-option(ng-repeat='local in localities' value='{{local._id}}') {{local.city}}, {{local.state}}
+      md-button(type='submit') Search
+md-card(ng-show='loading || places')
+  md-card-content
+    md-progress-circular(md-mode='indeterminate' ng-show='loading' md-diameter='25')
+    md-button.md-raised.md-primary(ng-hide='loading' ng-click='importAll()') Import All
+    p(ng-hide='loading') Found: {{places.length}}
+    md-list
+      md-list-item(ng-repeat='place in places')
+        p {{place.name}} - {{place.address}} ({{place.gplaceId}})
+        md-button.md-secondary(ng-click='save(place)') Import
+        md-divider
+         
