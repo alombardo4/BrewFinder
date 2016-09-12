@@ -28,4 +28,4 @@ Run `grunt build` for building and `grunt serve` for preview.
 
 ## Running
 Development mode runs the web server on port 9000.
-Production mode runs the web server on port 8888. Running production behind a reverse proxy to port 443 or 80 is highly recommended to prevent giving the NodeJS process root access. The api is available at `http(s)://SERVER_IP/api`.
+Production mode runs the web server on port 8888. Running production behind a reverse proxy to port 443 or 80 is highly recommended to prevent giving the NodeJS process root access. The api is available at `http(s)://SERVER_IP:PORT/api`.
